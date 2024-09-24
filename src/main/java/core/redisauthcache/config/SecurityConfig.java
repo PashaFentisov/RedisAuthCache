@@ -1,7 +1,6 @@
 package core.redisauthcache.config;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.PayloadApplicationEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,7 +11,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
@@ -41,7 +39,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req -> req
                         .requestMatchers("/register", "/login").permitAll()
                         .anyRequest().authenticated())
-//                .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
+                .sessionManagement(sessionManagement ->
+                        sessionManagement
+                                .maximumSessions(1)
+                                .expiredUrl("/login?expired=true"))
                 .formLogin(withDefaults())
                 .authenticationProvider(authenticationProvider()).build();
     }
