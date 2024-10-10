@@ -1,7 +1,7 @@
 package core.redisauthcache.service.impl;
 
-import core.redisauthcache.Dto.UserDto;
-import core.redisauthcache.Dto.UserRegisterDto;
+import core.redisauthcache.dto.UserDto;
+import core.redisauthcache.dto.UserRegisterDto;
 import core.redisauthcache.model.Role;
 import core.redisauthcache.model.User;
 import core.redisauthcache.repository.RoleRepository;
