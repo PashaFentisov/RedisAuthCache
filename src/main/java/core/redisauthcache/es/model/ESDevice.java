@@ -16,7 +16,7 @@ import java.util.Objects;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Device {
+public class ESDevice {
     @Id
     private String id;
 
@@ -27,8 +27,8 @@ public class Device {
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
-        Device device = (Device) object;
-        return Objects.equals(name, device.name);
+        ESDevice ESDevice = (ESDevice) object;
+        return Objects.equals(name, ESDevice.name);
     }
 
     @Override
